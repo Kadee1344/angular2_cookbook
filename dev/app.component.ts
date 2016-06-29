@@ -1,24 +1,29 @@
 import {Component} from '@angular/core';
-import {PropertyBindingComponent} from './property-binding.component';
+import {InputComponent} from './bindings/input.component';
+import {ConfirmComponent} from './bindings/confirm.component';
+
 
 @Component({
     selector: 'my-app',
     template: `
-      <section class="parent">
-        <h2>This is the parent component</h2>
-        <h4>Please enter your name</h4>
-        <input type="text" [(ngModel)]="name">
-        <br>
-        <section class="child">
-          <my-property-binding [myName]="name" (hobbiesChanged)="hobbies = $event"></my-property-binding>
-        </section>
-        <p>My hobbies are: {{hobbies}}</p>
-      </section>
+      <div class="container">
+        <my-input (submitted)="onSubmit($event)" [myself]="confirmedMyself"></my-input>
+      </div>
+      <div class="container">
+        <my-confirm (confirmed)="onConfirm($event)" [myself]="myself"></my-confirm>
+      </div>
     `,
-    directives: [PropertyBindingComponent]
+    directives: [InputComponent, ConfirmComponent]
 })
 export class AppComponent {
-  name = '';
-  hobbies = '';
+  myself = {name: '', age: ''};
+  confirmedMyself = {name: '', age: ''};
 
+  onSubmit(myself: {name: string, age: string}){
+    this.myself = {name: myself.name, age: myself.age};
+  }
+
+  onConfirm(myself: {name: string, age: string}){
+    this.confirmedMyself = {name: myself.name, age: myself.age};
+  }
 }
