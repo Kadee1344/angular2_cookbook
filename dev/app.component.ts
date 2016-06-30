@@ -1,15 +1,19 @@
 import {Component} from '@angular/core';
-import {AttributeDirectives} from './attribute-directives.component';
-import {StructuralDirectives} from './structural-directives.component';
+import {ShoppingListComponent} from './shopping-list/shopping-list.component'
+
 
 @Component({
     selector: 'my-app',
     template: `
-      <my-attribute-directives></my-attribute-directives>
-      <my-structural-directives></my-structural-directives>
+      <header>
+        <div class="brand">Shopping list</div>
+      </header>
+      <div class="main">
+        <shopping-list></shopping-list>
+      </div>
     `,
-    directives: [AttributeDirectives, StructuralDirectives]
+    directives: [ShoppingListComponent]
 })
 export class AppComponent {
-
+  listItems = new Array<{name: string, amount: number}>();
 }
