@@ -7,7 +7,9 @@ import {Component2Component} from './component2.component';
     selector: 'my-app',
     template: ` 
     <h2>First component</h2>
-      <component-1></component-1>
+    <component-1></component-1>
+    <h2>Second component</h2>
+    <component-2></component-2>
     `,
     directives: [Component1Component, Component2Component]
 })
